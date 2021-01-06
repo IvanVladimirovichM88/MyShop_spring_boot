@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Users</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4" style="width: 40rem;">
+
+        <h2 class="mb-4">Users</h2>
+
+        <div class="card mb-4">
+            <div class="card-body" >
+                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>username</th>
+                        <th>name</th>
+                        <th>action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"/>
+                        <td th:text="${user.username}"/>
+                        <td th:text="${user.name}"/>
+                        <td>
+                            <a class="btn btn-primary" th:href="@{'/user/edit/' + ${user.id}}">Details/Change</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a class="btn btn-primary" th:href="@{/user/add}">Add user</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
