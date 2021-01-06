@@ -5,12 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import ru.geekbrains.data.UserData;
-import ru.geekbrains.entities.Role;
-import ru.geekbrains.entities.User;
+import ru.geekbrains.persists.entities.Role;
+import ru.geekbrains.persists.entities.User;
 import ru.geekbrains.services.RoleService;
 import ru.geekbrains.services.UserService;
 
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Controller
@@ -55,8 +54,7 @@ public class MainController {
             @ModelAttribute UserData userData
     ){
         User user = new User();
-        user.init(userData);
-        user.getRoles().addAll( userData.getRoles().stream().map(roleService::findByName).collect(Collectors.toList()));
+        initUser(user,userData);
         userService.saveOrUpdate(user);
         return "redirect:/users";
     }
@@ -77,9 +75,7 @@ public class MainController {
             @ModelAttribute UserData userData
     ){
         User user = userService.getOne(userData.getId());
-        user.init(userData);
-        user.getRoles().clear();
-        user.getRoles().addAll(userData.getRoles().stream().map(roleService::findByName).collect(Collectors.toList()));        ;
+        initUser(user,userData);
         userService.saveOrUpdate(user);
         return "redirect:/users";
     }
@@ -106,5 +102,13 @@ public class MainController {
     ){
         roleService.saveOrUpdate(role);
         return"redirect:/roles";
+    }
+
+    private void initUser(User user, UserData userData){
+        user.setUsername(userData.getUsername());
+        user.setName(userData.getName());
+        user.setPassword(userData.getPassword());
+        user.setRoles( userData.getRoles().stream().map(roleService::findByName).collect(Collectors.toList()));
+
     }
 }

@@ -1,13 +1,8 @@
-package ru.geekbrains.entities;
-
-
-import ru.geekbrains.data.UserData;
-import ru.geekbrains.services.RoleService;
+package ru.geekbrains.persists.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "user_tbl")
@@ -45,11 +40,6 @@ public class User {
         this.name = name;
     }
 
-    public void init(UserData userData){
-        this.username = userData.getUsername();
-        this.password = userData.getPassword();
-        this.name = userData.getName();
-    }
 
 
     public Long getId() {

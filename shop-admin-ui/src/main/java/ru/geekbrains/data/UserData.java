@@ -1,11 +1,10 @@
 package ru.geekbrains.data;
 
-import ru.geekbrains.entities.Role;
-import ru.geekbrains.entities.User;
+import ru.geekbrains.persists.entities.Role;
+import ru.geekbrains.persists.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class UserData {

@@ -1,10 +1,10 @@
 package ru.geekbrains.utils;
 
 import org.springframework.stereotype.Component;
-import ru.geekbrains.entities.Role;
-import ru.geekbrains.entities.User;
-import ru.geekbrains.repositories.RoleRepository;
-import ru.geekbrains.repositories.UserRepository;
+import ru.geekbrains.persists.entities.Role;
+import ru.geekbrains.persists.entities.User;
+import ru.geekbrains.persists.repositories.RoleRepository;
+import ru.geekbrains.persists.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 
