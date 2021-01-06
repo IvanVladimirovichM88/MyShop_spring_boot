@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Add User</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white font-weight-bold">
+                New Role
+            </div>
+            <form th:action="@{/user/edit}" th:object="${userData}" method="post">
+                <input th:field="*{id}" type="hidden" class="form-control">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input th:field = "*{name}" type="text" class="form-control" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input th:field = "*{username}" type="text" class="form-control" placeholder="Enter Username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input th:field = "*{password}" type="text" class="form-control" placeholder="Enter password">
+                    </div>
+                    <div class="form-group" >
+                        <table class = "table table-hover">
+                            <tr>
+                                <th>User roles</th>
+                            </tr>
+                            <tbody>
+                            <tr th:each="role : ${userData.roles}">
+                                <td th:text="${role}">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <label>Select roles</label>
+                        <select multiple class="form-control" th:field="*{roles}">
+                            <option th:each ="role : ${allRoles}"
+                                    th:value="${role.name}"
+                                    th:text ="${role.name}">roles
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="card-footer bg-white">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
