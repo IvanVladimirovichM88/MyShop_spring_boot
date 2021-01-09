@@ -8,7 +8,7 @@ import ru.geekbrains.persists.repositories.UserRepository;
 
 import javax.annotation.PostConstruct;
 
-@Component
+//@Component
 public class SampleData {
     private UserRepository userRepository;
     private RoleRepository roleRepository;

@@ -10,7 +10,7 @@ public class Role {
     @Column(name = "role_id")
     private Long id;
 
-    @Column(name = "name_fld")
+    @Column(name = "name_fld", unique = true)
     private String name;
 
     //////////////////////////////////////////////

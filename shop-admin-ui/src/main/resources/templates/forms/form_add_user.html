@@ -23,7 +23,7 @@
             <div class="card-header bg-white font-weight-bold">
                 New Role
             </div>
-            <form th:action="@{/user/add}" th:object="${userData}" method="post">
+            <form th:action="@{/users/add}" th:object="${userData}" method="post">
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group">
@@ -44,7 +44,7 @@
                         <label>Select roles</label>
                         <select multiple class="form-control" th:field="*{roles}">
                             <option th:each ="role : ${allRoles}"
-                                th:value="${role.id}"
+                                th:value="${role.name}"
                                 th:text ="${role.name}">Roles
                             </option>
 

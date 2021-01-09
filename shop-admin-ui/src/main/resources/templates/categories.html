@@ -9,7 +9,7 @@
     <th:block th:replace = "~{fragments/resources :: head/link}"/>
     <th:block th:replace = "~{fragments/resources :: head/script}"/>
 
-    <title>Users</title>
+    <title>Categories</title>
 </head>
 <body class="bg-light">
 
@@ -18,9 +18,9 @@
 <div class="d-flex">
     <div th:replace="~{fragments/navigation :: menu}"/>
 
-    <div class="content p-4" style="width: 40rem;">
+    <div class="content p-4" style="width: 30rem;">
 
-        <h2 class="mb-4">Users</h2>
+        <h2 class="mb-4">Categories</h2>
 
         <div class="card mb-4">
             <div class="card-body" >
@@ -28,24 +28,22 @@
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>username</th>
                         <th>name</th>
-                        <th>action</th>
+                        <th>actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}"/>
-                        <td th:text="${user.username}"/>
-                        <td th:text="${user.name}"/>
+                    <tr th:each="category : ${allCategories}">
+                        <td th:text="${category.id}"/>
+                        <td th:text="${category.title}"/>
                         <td>
-                            <a class="btn btn-primary" th:href="@{'/users/edit/' + ${user.id}}">Details/Change</a>
+                            <a class="btn btn-primary" th:href="@{'/categories/edit/' + ${category.id}}">rename category</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <br>
-                <a class="btn btn-primary" th:href="@{/users/add}">Add user</a>
+                <a class="btn btn-primary" th:href="@{/categories/add}">Add category</a>
             </div>
         </div>
     </div>

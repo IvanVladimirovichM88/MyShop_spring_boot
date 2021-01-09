@@ -9,7 +9,7 @@
     <th:block th:replace = "~{fragments/resources :: head/link}"/>
     <th:block th:replace = "~{fragments/resources :: head/script}"/>
 
-    <title>Users</title>
+    <title>Products</title>
 </head>
 <body class="bg-light">
 
@@ -20,7 +20,7 @@
 
     <div class="content p-4" style="width: 40rem;">
 
-        <h2 class="mb-4">Users</h2>
+        <h2 class="mb-4">Products</h2>
 
         <div class="card mb-4">
             <div class="card-body" >
@@ -28,24 +28,24 @@
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>username</th>
-                        <th>name</th>
-                        <th>action</th>
+                        <th>title</th>
+                        <th>price</th>
+                        <th>actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}"/>
-                        <td th:text="${user.username}"/>
-                        <td th:text="${user.name}"/>
+                    <tr th:each="product : ${productsData}">
+                        <td th:text="${product.id}"/>
+                        <td th:text="${product.title}"/>
+                        <td th:text="${product.price}"/>
                         <td>
-                            <a class="btn btn-primary" th:href="@{'/users/edit/' + ${user.id}}">Details/Change</a>
+                            <a class="btn btn-primary" th:href="@{'/products/edit/' + ${product.id}}">Details/Change</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <br>
-                <a class="btn btn-primary" th:href="@{/users/add}">Add user</a>
+                <a class="btn btn-primary" th:href="@{/products/add}">Add product</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 package ru.geekbrains.services;
 
+import ru.geekbrains.data.UserData;
 import ru.geekbrains.persists.entities.User;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface UserService {
     void remove(Long id);
 
     void saveOrUpdate(User user);
+
+    User createOrUpdate(UserData userData);
 }
