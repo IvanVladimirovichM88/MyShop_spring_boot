@@ -1,15 +1,13 @@
 <!doctype html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <th:block th:replace = "~{fragments/resources :: head/link}"/>
-    <th:block th:replace = "~{fragments/resources :: head/script}"/>
 
-    <title>Login</title>
+    <title>Login | BootAdmin</title>
 </head>
 <body class="bg-light">
 
@@ -19,19 +17,19 @@
             <h1 class="text-center mb-4">BootAdmin</h1>
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form th:action="@{/login}" method="post">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Username">
+                            <input type="text" class="form-control" placeholder="Username" name="username">
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
                         </div>
 
                         <div class="form-check mb-3">
@@ -56,6 +54,7 @@
     </div>
 </div>
 
+<th:block th:replace = "~{fragments/resources :: head/script}"/>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118868344-1"></script>
 <script>

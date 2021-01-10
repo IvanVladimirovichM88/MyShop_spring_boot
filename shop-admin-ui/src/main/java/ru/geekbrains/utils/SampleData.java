@@ -30,12 +30,12 @@ public class SampleData {
         roleRepository.save(role3);
         roleRepository.save(role4);
 
-        User user1 = new User("Alex", "alex", "1");
+        User user1 = new User("Alex", "alex", "$2y$12$A8SuVxN0Mu89CdKn3Bk1Yevuaayq8KEpXxh8Masvbw3Ke3ijNDokm");
         user1.getRoles().add(role1);
         user1.getRoles().add(role2);
         user1.getRoles().add(role3);
 
-        User user2 = new User("Alena", "alena", "1");
+        User user2 = new User("Alena", "alena", "$2y$12$A8SuVxN0Mu89CdKn3Bk1Yevuaayq8KEpXxh8Masvbw3Ke3ijNDokm");
         user2.getRoles().add(role1);
         user2.getRoles().add(role4);
 
