@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Categories</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4" style="width: 30rem;">
+
+        <h2 class="mb-4">Categories</h2>
+
+        <div class="card mb-4">
+            <div class="card-body" >
+                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="category : ${allCategories}">
+                        <td th:text="${category.id}"/>
+                        <td th:text="${category.title}"/>
+                        <td>
+                            <a class="btn btn-primary" th:href="@{'/categories/edit/' + ${category.id}}">rename category</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a class="btn btn-primary" th:href="@{/categories/add}">Add category</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

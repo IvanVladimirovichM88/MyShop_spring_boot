@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Edit Product</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white font-weight-bold">
+                New Role
+            </div>
+            <form th:action="@{/products/edit}" th:object="${productData}" method="post">
+                <input th:field="*{id}" type="hidden" class="form-control">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input th:field = "*{title}" type="text" class="form-control" placeholder="Enter Title">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input th:field = "*{price}" type="text" class="form-control" placeholder="Enter Price">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input th:field = "*{description}" type="text" class="form-control" placeholder="Enter Description">
+                    </div>
+                    <div class="form-group" >
+                        <table class = "table table-hover">
+                            <tr>
+                                <th>Product categories</th>
+                            </tr>
+                            <tbody>
+                            <tr th:each="category : ${productData.categoryTitle}">
+                                <td th:text="${category}">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Categories</label>
+                        <select multiple class="form-control" th:field="*{categoryTitle}">
+                            <option th:each ="category : ${allCategories}"
+                                    th:value="${category.title}"
+                                    th:text ="${category.title}"/>
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="card-footer bg-white">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

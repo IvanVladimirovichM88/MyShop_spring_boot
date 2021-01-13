@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Add category</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4">
+        <div class="card mb-4">
+            <div class="card-header bg-white font-weight-bold">
+                New Category
+            </div>
+            <form th:action="@{/categories/add}" th:object="${newCategory}" method="post">
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>Category title</label>
+                        <input th:field = "*{title}" type="text" class="form-control" id="exampleInputEmail1" placeholder="Фрукты">
+                    </div>
+
+                </div>
+                <div class="card-footer bg-white">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
