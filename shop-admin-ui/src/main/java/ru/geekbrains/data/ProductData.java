@@ -1,8 +1,10 @@
 package ru.geekbrains.data;
 
+import org.springframework.web.multipart.MultipartFile;
 import ru.geekbrains.persists.entities.Category;
 import ru.geekbrains.persists.entities.Product;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,8 +13,11 @@ public class ProductData {
     private String title;
     private Double price;
     private String description;
-    private String image;
     private List<String> categoryTitle;
+    private List<PictureData> picturesData;
+    private MultipartFile[] newPictures;
+
+    ///////////////////////////////////////////
 
     public ProductData() {
     }
@@ -22,9 +27,10 @@ public class ProductData {
         this.title = product.getTitle();
         this.price = product.getPrice();
         this.description = product.getDescription();
-        this.image = product.getImage();
         this.categoryTitle = product.getCategories().stream()
                 .map(Category::getTitle).collect(Collectors.toList());
+        this.picturesData = product.getPictureRefs().stream()
+                .map(PictureData::new).collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -59,19 +65,27 @@ public class ProductData {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public List<String> getCategoryTitle() {
         return categoryTitle;
     }
 
     public void setCategoryTitle(List<String> categoryTitle) {
         this.categoryTitle = categoryTitle;
+    }
+
+    public List<PictureData> getPicturesData() {
+        return picturesData;
+    }
+
+    public void setPicturesData(List<PictureData> picturesData) {
+        this.picturesData = picturesData;
+    }
+
+    public MultipartFile[] getNewPictures() {
+        return newPictures;
+    }
+
+    public void setNewPictures(MultipartFile[] newPictures) {
+        this.newPictures = newPictures;
     }
 }

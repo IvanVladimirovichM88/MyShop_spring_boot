@@ -21,15 +21,17 @@ public class Product {
     @Column(name = "description_fld")
     private String description;
 
-    @Column(name = "image_fld")
-    private String image;
-
     @ManyToMany
     @JoinTable(
             name = "product_category_tbl",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "picture_ref_id")
+    private List<PictureRef> pictureRefs = new ArrayList<>();
+
 
     ////////////////////////////////////////////////////////////////////
 
@@ -77,11 +79,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public List<PictureRef> getPictureRefs() {
+        return pictureRefs;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPictureRefs(List<PictureRef> pictureRefs) {
+        this.pictureRefs = pictureRefs;
     }
 }

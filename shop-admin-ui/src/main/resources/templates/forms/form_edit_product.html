@@ -23,7 +23,7 @@
             <div class="card-header bg-white font-weight-bold">
                 New Role
             </div>
-            <form th:action="@{/products/edit}" th:object="${productData}" method="post">
+            <form th:action="@{/products/edit}" th:object="${productData}" method="post" enctype="multipart/form-data">
                 <input th:field="*{id}" type="hidden" class="form-control">
                 <div class="card-body">
                     <div class="form-row">
@@ -62,11 +62,28 @@
 
                     </div>
 
+                    <div class="form-group" >
+                        <label for="newPictures">Product Image</label>
+                        <input th:field="*{newPictures}" type="file" class="form-control" id="newPictures"
+                                 placeholder="Upload new product picture" multiple>
+                    </div>
+
                 </div>
                 <div class="card-footer bg-white">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
             </form>
+
+<!--            <div class="container-fluid mb-4">-->
+<!--                <div class="card-columns" style="column-count: 5">-->
+<!--                    <div class="card" th:each="pict : ${productData.picturesData}">-->
+<!--                        <div class="card-header">Picture</div>-->
+<!--                        <img class="card-img-bottom" th:src="@{/pictures/{pictureId}(pictureId=${pict.id})}"-->
+<!--                             width="40%"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
         </div>
     </div>
 </div>
