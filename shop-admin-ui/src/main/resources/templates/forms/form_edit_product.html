@@ -68,21 +68,23 @@
                                  placeholder="Upload new product picture" multiple>
                     </div>
 
+
+
                 </div>
                 <div class="card-footer bg-white">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
             </form>
 
-<!--            <div class="container-fluid mb-4">-->
-<!--                <div class="card-columns" style="column-count: 5">-->
-<!--                    <div class="card" th:each="pict : ${productData.picturesData}">-->
-<!--                        <div class="card-header">Picture</div>-->
-<!--                        <img class="card-img-bottom" th:src="@{/pictures/{pictureId}(pictureId=${pict.id})}"-->
-<!--                             width="40%"/>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="container-fluid mb-4">
+                <div class="card-columns" style="column-count: 5">
+                    <div class="card" th:each="pict : ${productData.picturesData}">
+                        <div class="card-header">Picture</div>
+                        <img class="card-img-bottom" th:src="@{/pictures/{pictureId}(pictureId=${pict.id})}"
+                             width="40%"/>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

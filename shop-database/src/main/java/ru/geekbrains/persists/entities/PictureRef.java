@@ -20,6 +20,10 @@ public class PictureRef {
     @JoinColumn(name = "picture_id")
     private Picture picture;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     //////////////////////////////////////////////////
 
     public PictureRef() {
@@ -61,5 +65,13 @@ public class PictureRef {
 
     public void setPicture(Picture picture) {
         this.picture = picture;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

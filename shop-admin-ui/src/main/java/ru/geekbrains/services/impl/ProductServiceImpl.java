@@ -74,13 +74,14 @@ public class ProductServiceImpl implements ProductService {
 
         if (productData.getNewPictures() != null){
             for (MultipartFile newPicture : productData.getNewPictures()){
-
                 try {
-                    product.getPictureRefs().add(new PictureRef(
+                    PictureRef pictureRef = new PictureRef(
                             newPicture.getOriginalFilename(),
                             newPicture.getContentType(),
-                            pictureService.createPicture(newPicture.getBytes())
-                    ));
+                            pictureService.createPicture(newPicture.getBytes()));
+
+                    product.getPictureRefs().add(pictureRef);
+                    pictureRef.setProduct(product);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

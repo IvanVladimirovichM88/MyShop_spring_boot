@@ -9,7 +9,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "priduct_id")
+    @Column(name = "product_id")
     private Long id;
 
     @Column(name = "title_fld")
@@ -28,8 +28,7 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "picture_ref_id")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<PictureRef> pictureRefs = new ArrayList<>();
 
 
