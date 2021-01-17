@@ -26,12 +26,17 @@ public class PictureServiceBlobImpl implements PictureService{
 
     @Override
     public Optional<byte[]> getPictureById(Long id) {
-        return pictureRefRepository.findById(id)
+        return pictureRefRepository.findByIdWithBlob(id)
                 .map(pictureRef -> pictureRef.getPicture().getData());
     }
 
     @Override
     public Picture createPicture(byte[] picture) {
         return new Picture(picture);
+    }
+
+    @Override
+    public void removePictureById(Long id) {
+        pictureRefRepository.deleteById(id);
     }
 }

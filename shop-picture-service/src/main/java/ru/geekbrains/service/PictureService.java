@@ -8,4 +8,5 @@ public interface PictureService {
     Optional<String> getPictureContentTypeById(Long id);
     Optional<byte[]> getPictureById(Long id);
     Picture createPicture(byte[] picture);
+    void removePictureById(Long id);
 }

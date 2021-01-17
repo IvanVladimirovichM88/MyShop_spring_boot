@@ -3,6 +3,7 @@ package ru.geekbrains.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.geekbrains.persists.entities.Picture;
 import ru.geekbrains.persists.entities.PictureRef;
 import ru.geekbrains.persists.repositories.PictureRefRepository;
@@ -39,8 +40,9 @@ public class PictureServiceFileImpl implements PictureService{
     @Override
     public Optional<byte[]> getPictureById(Long id) {
 
-        return pictureRefRepository.findById(id)
-                .filter(pictureRef -> pictureRef.getPicture().getFilename() != null)
+        return pictureRefRepository.findByIdWithFileName(id)
+//                .findById(id)
+//                .filter(pictureRef -> pictureRef.getPicture().getFilename() != null)
                 .map( pictureRef -> Paths.get(storagePath, pictureRef.getPicture().getFilename()))
                 .filter(Files::exists)
                 .map(path -> {
@@ -62,5 +64,12 @@ public class PictureServiceFileImpl implements PictureService{
             throw  new RuntimeException(ex);
         }
         return new Picture(filename);
+    }
+
+    @Override
+    @Transactional
+    public void removePictureById(Long id) {
+        pictureRefRepository.deleteById(id);
+
     }
 }
