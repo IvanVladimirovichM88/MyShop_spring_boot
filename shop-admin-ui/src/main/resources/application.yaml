@@ -23,3 +23,11 @@ spring:
 
   liquibase:
     enabled: false
+
+picture:
+  storage:
+    path: C:\Users\EVA\IdeaProjects\study-food-shop\pictures
+    type: file
+
+
+

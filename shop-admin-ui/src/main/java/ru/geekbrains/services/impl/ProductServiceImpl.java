@@ -22,7 +22,9 @@ public class ProductServiceImpl implements ProductService {
     private CategoryRepository categoryRepository;
     private PictureService pictureService;
 
-    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, PictureService pictureService) {
+    public ProductServiceImpl(ProductRepository productRepository,
+                              CategoryRepository categoryRepository,
+                              PictureService pictureService) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.pictureService = pictureService;
@@ -75,13 +77,15 @@ public class ProductServiceImpl implements ProductService {
         if (productData.getNewPictures() != null){
             for (MultipartFile newPicture : productData.getNewPictures()){
                 try {
-                    PictureRef pictureRef = new PictureRef(
-                            newPicture.getOriginalFilename(),
-                            newPicture.getContentType(),
-                            pictureService.createPicture(newPicture.getBytes()));
+                    if (!newPicture.isEmpty()) {
+                        PictureRef pictureRef = new PictureRef(
+                                newPicture.getOriginalFilename(),
+                                newPicture.getContentType(),
+                                pictureService.createPicture(newPicture.getBytes()));
 
-                    product.getPictureRefs().add(pictureRef);
-                    pictureRef.setProduct(product);
+                        product.getPictureRefs().add(pictureRef);
+                        pictureRef.setProduct(product);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
