@@ -39,3 +39,4 @@ mvnw
 mvnw.cmd
 
 /pictures/
+/shop-ui/src/main/resources/static/

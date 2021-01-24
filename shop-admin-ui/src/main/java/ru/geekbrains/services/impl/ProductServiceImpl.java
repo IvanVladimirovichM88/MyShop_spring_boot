@@ -22,9 +22,11 @@ public class ProductServiceImpl implements ProductService {
     private CategoryRepository categoryRepository;
     private PictureService pictureService;
 
-    public ProductServiceImpl(ProductRepository productRepository,
-                              CategoryRepository categoryRepository,
-                              PictureService pictureService) {
+    public ProductServiceImpl(
+            ProductRepository productRepository,
+            CategoryRepository categoryRepository,
+            PictureService pictureService) {
+
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.pictureService = pictureService;

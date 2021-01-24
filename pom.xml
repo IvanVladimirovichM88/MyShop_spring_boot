@@ -24,9 +24,10 @@
 
     <modules>
         <module>shop-database</module>
+        <module>shop-picture-service</module>
         <module>shop-admin-ui</module>
         <module>shop-ui</module>
-        <module>shop-picture-service</module>
+
     </modules>
 
 </project>
