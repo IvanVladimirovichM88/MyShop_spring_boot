@@ -8,8 +8,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>shop-picture-service-app</artifactId>
-    <name>shop-picture-service-app</name>
+    <artifactId>spring-eureka-server</artifactId>
+    <name>spring-eureka-server</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -18,24 +18,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>ru.geekbrains</groupId>
-            <artifactId>shop-picture-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
@@ -53,5 +41,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
