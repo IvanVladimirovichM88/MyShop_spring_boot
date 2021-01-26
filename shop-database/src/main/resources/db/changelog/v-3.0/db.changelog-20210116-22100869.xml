@@ -1,0 +1,108 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="Ivan (generated)" id="1610835046732-1">
+        <createTable tableName="category_tbl">
+            <column autoIncrement="true" name="category_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="category_tblPK"/>
+            </column>
+            <column name="title_fld" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-2">
+        <createTable tableName="picture_ref_tbl">
+            <column autoIncrement="true" name="picture_ref_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="picture_ref_tblPK"/>
+            </column>
+            <column name="content_type_fld" type="VARCHAR(255)"/>
+            <column name="name_fld" type="VARCHAR(255)"/>
+            <column name="picture_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-3">
+        <createTable tableName="picure_tbl">
+            <column autoIncrement="true" name="picture_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="picure_tblPK"/>
+            </column>
+            <column name="data_fld" type="LONGBLOB"/>
+            <column name="filename_fld" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-4">
+        <createTable tableName="product_category_tbl">
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-5">
+        <createTable tableName="product_tbl">
+            <column autoIncrement="true" name="product_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="product_tblPK"/>
+            </column>
+            <column name="description_fld" type="VARCHAR(255)"/>
+            <column name="price_fld" type="DOUBLE"/>
+            <column name="title_fld" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-6">
+        <createTable tableName="role_tbl">
+            <column autoIncrement="true" name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="role_tblPK"/>
+            </column>
+            <column name="name_fld" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-7">
+        <createTable tableName="user_role_tbl">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-8">
+        <createTable tableName="user_tbl">
+            <column autoIncrement="true" name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_tblPK"/>
+            </column>
+            <column name="name_fld" type="VARCHAR(255)"/>
+            <column name="password_fld" type="VARCHAR(255)"/>
+            <column name="username_fld" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-9">
+        <addUniqueConstraint columnNames="name_fld" constraintName="UC_ROLE_TBLNAME_FLD_COL" tableName="role_tbl"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-10">
+        <addUniqueConstraint columnNames="username_fld" constraintName="UC_USER_TBLUSERNAME_FLD_COL" tableName="user_tbl"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-11">
+        <addUniqueConstraint columnNames="picture_id" constraintName="UK_sg8mugfjfd7j1equfgdc33va0" tableName="picture_ref_tbl"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-12">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="product_category_tbl" constraintName="FK2a2w1g6g6xceqlhxxhokjgnwg" deferrable="false" initiallyDeferred="false" referencedColumnNames="category_id" referencedTableName="category_tbl" validate="true"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-13">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role_tbl" constraintName="FK53b8oon0dkfbdetl5bsqfq0wn" deferrable="false" initiallyDeferred="false" referencedColumnNames="user_id" referencedTableName="user_tbl" validate="true"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-14">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="picture_ref_tbl" constraintName="FKbmh6e8hjso48dw3evi4ht907x" deferrable="false" initiallyDeferred="false" referencedColumnNames="product_id" referencedTableName="product_tbl" validate="true"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-15">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="product_category_tbl" constraintName="FKc31lm68g5xcxsrlfr43vedj2m" deferrable="false" initiallyDeferred="false" referencedColumnNames="product_id" referencedTableName="product_tbl" validate="true"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-16">
+        <addForeignKeyConstraint baseColumnNames="picture_id" baseTableName="picture_ref_tbl" constraintName="FKmqt0rqaadx5an1nuhj0csufl3" deferrable="false" initiallyDeferred="false" referencedColumnNames="picture_id" referencedTableName="picure_tbl" validate="true"/>
+    </changeSet>
+    <changeSet author="Ivan (generated)" id="1610835046732-17">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role_tbl" constraintName="FKpfkvhcexxtyx8f6mceq5sjds4" deferrable="false" initiallyDeferred="false" referencedColumnNames="role_id" referencedTableName="role_tbl" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

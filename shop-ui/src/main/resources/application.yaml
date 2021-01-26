@@ -1,7 +1,7 @@
 server:
   port: 8989
   servlet:
-    context-path: /admin
+    context-path: /shop
 
 spring:
   datasource:
