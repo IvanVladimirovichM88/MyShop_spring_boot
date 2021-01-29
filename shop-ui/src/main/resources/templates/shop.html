@@ -103,7 +103,9 @@
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img th:src="@{/pictures/{pictureId}(pictureId = ${product.getPictureId()})}" class="img-fluid" alt="Image">
+                                                    <img th:src="@{{pictureServiceUrl}/pictures/{pictureId}(
+                                                                    pictureId = ${product.getPictureId()},
+                                                                    pictureServiceUrl =${pictureServiceUrl}  )}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a th:href="@{'/products/details/'+${product.id} }" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
