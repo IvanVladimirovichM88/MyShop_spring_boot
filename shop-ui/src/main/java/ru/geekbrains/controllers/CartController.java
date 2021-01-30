@@ -5,7 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.geekbrains.data.LineItem;
 import ru.geekbrains.data.ProductData;
 import ru.geekbrains.services.CartService;
 import ru.geekbrains.services.ProductServiceForShop;
@@ -13,7 +12,6 @@ import ru.geekbrains.services.ProductServiceForShop;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/cart")
@@ -29,10 +27,6 @@ public class CartController {
 
     @GetMapping
     public String showCart(Model model){
-        List<LineItem> allLineItems = cartService.getLineItems();
-        model.addAttribute("allLineItems",allLineItems);
-        model.addAttribute("uniqProductInCart", allLineItems.size());
-        model.addAttribute("totalPrice", cartService.getTotalPrice());
 
         model.addAttribute("totalPrice", cartService.getTotalPrice());
         return"cart";

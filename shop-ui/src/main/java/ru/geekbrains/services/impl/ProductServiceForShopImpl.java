@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 public class ProductServiceForShopImpl implements ProductServiceForShop {
 
     private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
+    //private CategoryRepository categoryRepository;
 
     public ProductServiceForShopImpl(
-            ProductRepository productRepository,
-            CategoryRepository categoryRepository
+            ProductRepository productRepository
+            //,CategoryRepository categoryRepository
     ) {
         this.productRepository = productRepository;
-        this.categoryRepository = categoryRepository;
+        //this.categoryRepository = categoryRepository;
     }
 
     @Override

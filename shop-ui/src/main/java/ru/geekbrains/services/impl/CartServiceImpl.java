@@ -20,10 +20,11 @@ public class CartServiceImpl implements CartService {
     private List<LineItem> lineItems;
     private Double totalPrice;
 
-    @PostConstruct
-    public void init(){
+    public CartServiceImpl() {
         lineItems = new ArrayList<>();
+        totalPrice = 0.0;
     }
+
 
     @Override
     public void addOneAndUpdate(ProductData productData) {
