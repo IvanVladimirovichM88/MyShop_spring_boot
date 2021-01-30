@@ -123,7 +123,9 @@
             <li class="cart-box">
                 <ul class="cart-list">
                     <li th:each="lineItem : ${allLineItems}">
-                        <a href="#" class="photo"><img th:src="@{/pictures/{id}(id=${lineItem.pictureIdForCart} )}" class="cart-thumb" alt="" /></a>
+                        <a href="#" class="photo"><img th:src="@{{pictureServiceUrl}/pictures/{pictureId}(
+                                                                    pictureId = ${lineItem.pictureIdForCart},
+                                                                    pictureServiceUrl =${pictureServiceUrl}  )}" class="cart-thumb" alt="" /></a>
                         <h6 th:text="${lineItem.productTitle}"><a href="#"/> </h6>
                         <p th:text="${lineItem.qty} + 'x - '+${lineItem.totalPrice}"/>
                     </li>
