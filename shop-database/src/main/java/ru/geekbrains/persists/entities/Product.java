@@ -38,6 +38,12 @@ public class Product {
     public Product() {
     }
 
+    public Product(String title, Double price, Category category) {
+        this.title = title;
+        this.price = price;
+        this.categories.add(category);
+    }
+
     public Long getId() {
         return id;
     }
