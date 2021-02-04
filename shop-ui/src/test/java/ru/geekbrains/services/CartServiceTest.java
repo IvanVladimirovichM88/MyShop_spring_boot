@@ -6,6 +6,7 @@ import ru.geekbrains.data.LineItem;
 import ru.geekbrains.data.ProductData;
 import ru.geekbrains.services.impl.CartServiceImpl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -175,7 +176,7 @@ public class CartServiceTest {
 
         ProductData expectedProduct = new ProductData();
         expectedProduct.setId(1L);
-        expectedProduct.setPrice(123.1);
+        expectedProduct.setPrice( new BigDecimal("123.4"));
         expectedProduct.setTitle("product name");
 
         return expectedProduct;
@@ -187,7 +188,7 @@ public class CartServiceTest {
         for(int i = 0; i<num; i++){
             ProductData product = new ProductData();
             product.setId( (long)i + 1 );
-            product.setPrice((i+1.0)*10.0);
+            product.setPrice( BigDecimal.valueOf( (i+1.0)*10.0) );
             product.setTitle("product name " + i);
             products.add(product);
         }

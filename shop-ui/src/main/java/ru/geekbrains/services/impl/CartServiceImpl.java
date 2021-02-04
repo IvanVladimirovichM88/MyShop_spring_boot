@@ -7,8 +7,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ru.geekbrains.data.LineItem;
 import ru.geekbrains.data.ProductData;
 import ru.geekbrains.services.CartService;
-
-import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +17,11 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
 
     private List<LineItem> lineItems;
-    private Double totalPrice;
+    private BigDecimal totalPrice;
 
     public CartServiceImpl() {
         lineItems = new ArrayList<>();
-        totalPrice = 0.0;
+        totalPrice = new BigDecimal("0.0");
     }
 
 
@@ -84,15 +83,16 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void clearCart() {
-        totalPrice = 0.0;
+        totalPrice = new BigDecimal("0.0");
         lineItems = new ArrayList<>();
 
     }
 
     void recalculate(){
         totalPrice = lineItems.stream()
-                .mapToDouble( lineItem -> lineItem.getQty()*lineItem.getProductData().getPrice() )
-                .sum();
+                .map( lineItem -> lineItem.getProductData().getPrice().multiply( BigDecimal.valueOf(lineItem.getQty()) ) )
+                .reduce(new BigDecimal("0.0"), BigDecimal::add);
+
     }
 
     @Override
@@ -104,11 +104,11 @@ public class CartServiceImpl implements CartService {
         this.lineItems = lineItems;
     }
 
-    public Double getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Double totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 }

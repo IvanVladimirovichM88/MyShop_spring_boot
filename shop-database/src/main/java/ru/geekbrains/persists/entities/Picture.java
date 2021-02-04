@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "picure_tbl")
+@Table(name = "picture_tbl")
 public class Picture {
 
     @Id

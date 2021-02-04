@@ -5,13 +5,14 @@ import ru.geekbrains.persists.entities.Category;
 import ru.geekbrains.persists.entities.Product;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductData {
     private Long id;
     private String title;
-    private Double price;
+    private BigDecimal price;
     private String description;
     private List<String> categoryTitle;
     private List<PictureData> picturesData;
@@ -49,11 +50,11 @@ public class ProductData {
         this.title = title;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

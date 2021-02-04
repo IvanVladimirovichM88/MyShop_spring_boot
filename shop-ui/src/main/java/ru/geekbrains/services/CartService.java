@@ -3,6 +3,7 @@ package ru.geekbrains.services;
 import ru.geekbrains.data.LineItem;
 import ru.geekbrains.data.ProductData;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface CartService {
@@ -13,6 +14,6 @@ public interface CartService {
     void removeAll(Long productId);
     void clearCart();
     List<LineItem> getLineItems();
-    Double getTotalPrice();
+    BigDecimal getTotalPrice();
 
 }

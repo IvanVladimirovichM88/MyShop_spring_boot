@@ -22,12 +22,13 @@ spring:
     suffix: .html
 
   liquibase:
-    enabled: false
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
 
 picture:
   storage:
     path: C:\Users\EVA\IdeaProjects\study-food-shop\pictures
-    type: file
+#    type: file
 
 
 

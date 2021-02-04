@@ -1,6 +1,7 @@
 package ru.geekbrains.persists.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Product {
     private String title;
 
     @Column(name = "price_fld")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "description_fld")
     private String description;
@@ -38,7 +39,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, Double price, Category category) {
+    public Product(String title, BigDecimal price, Category category) {
         this.title = title;
         this.price = price;
         this.categories.add(category);
@@ -60,11 +61,11 @@ public class Product {
         this.title = title;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

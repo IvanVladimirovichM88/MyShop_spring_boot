@@ -1,5 +1,9 @@
 package ru.geekbrains.data;
 
+import liquibase.pro.packaged.B;
+
+import java.math.BigDecimal;
+
 public class LineItem {
 
     private ProductData productData;
@@ -26,8 +30,8 @@ public class LineItem {
         return this.productData.getTitle();
     }
 
-    public Double getTotalPrice(){
-        return productData.getPrice()*qty;
+    public BigDecimal getTotalPrice(){
+        return productData.getPrice().multiply(BigDecimal.valueOf(qty)) ;
     }
 
 

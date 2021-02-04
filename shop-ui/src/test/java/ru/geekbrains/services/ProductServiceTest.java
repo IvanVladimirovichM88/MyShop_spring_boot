@@ -9,6 +9,7 @@ import ru.geekbrains.persists.repositories.CategoryRepository;
 import ru.geekbrains.persists.repositories.ProductRepository;
 import ru.geekbrains.services.impl.ProductServiceForShopImpl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class ProductServiceTest {
 
         Product expectedProduct = new Product();
         expectedProduct.setCategories(categories);
-        expectedProduct.setPrice(1.1);
+        expectedProduct.setPrice(new BigDecimal("1.1"));
         expectedProduct.setDescription("product description");
         expectedProduct.setTitle("product title");
         expectedProduct.setId(1L);
