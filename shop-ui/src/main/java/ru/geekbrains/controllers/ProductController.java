@@ -50,7 +50,7 @@ public class ProductController {
 
 
     @PostMapping(value = "/details")
-    public String addToCartFormDetail(
+    public String addToCartFromDetail(
             @ModelAttribute ShortLineItem lineItem
     ){
         ProductData productData = productService.findProductDataById( lineItem.getProductId() );

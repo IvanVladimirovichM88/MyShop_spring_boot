@@ -1,6 +1,7 @@
 package ru.geekbrains.services.impl;
 
 import org.springframework.stereotype.Service;
+import ru.geekbrains.persists.entities.Product;
 import ru.geekbrains.persists.repositories.CategoryRepository;
 import ru.geekbrains.persists.repositories.ProductRepository;
 import ru.geekbrains.data.ProductData;
@@ -31,5 +32,10 @@ public class ProductServiceForShopImpl implements ProductServiceForShop {
     @Override
     public ProductData findProductDataById(Long id) {
         return new ProductData(productRepository.getOne(id)) ;
+    }
+
+    @Override
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 }

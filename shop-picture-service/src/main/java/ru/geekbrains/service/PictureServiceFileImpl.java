@@ -41,8 +41,6 @@ public class PictureServiceFileImpl implements PictureService{
     public Optional<byte[]> getPictureById(Long id) {
 
         return pictureRefRepository.findByIdWithFileName(id)
-//                .findById(id)
-//                .filter(pictureRef -> pictureRef.getPicture().getFilename() != null)
                 .map( pictureRef -> Paths.get(storagePath, pictureRef.getPicture().getFilename()))
                 .filter(Files::exists)
                 .map(path -> {

@@ -25,7 +25,7 @@ public class CartServiceTest {
     @Test
     public void testEmptyCart(){
         assertEquals(0, cartService.getLineItems().size());
-        assertEquals(0.0, cartService.getTotalPrice());
+        assertEquals(BigDecimal.valueOf(0.0), cartService.getTotalPrice());
     }
 
     @Test
