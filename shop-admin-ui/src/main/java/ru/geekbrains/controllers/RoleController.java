@@ -2,10 +2,7 @@ package ru.geekbrains.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.persists.entities.Role;
 import ru.geekbrains.persists.repositories.RoleRepository;
 import ru.geekbrains.services.RoleService;
@@ -42,5 +39,13 @@ public class RoleController {
     ){
         roleService.saveOrUpdate(role);
         return"redirect:/roles";
+    }
+
+    @GetMapping("/delete/{roleId}")
+    public String deleteRole(
+            @PathVariable Long roleId
+    ){
+        roleService.remove(roleId);
+        return "redirect:/roles";
     }
 }

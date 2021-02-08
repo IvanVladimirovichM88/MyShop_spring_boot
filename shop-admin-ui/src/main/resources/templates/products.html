@@ -39,7 +39,8 @@
                         <td th:text="${product.title}"/>
                         <td th:text="${product.price}"/>
                         <td>
-                            <a class="btn btn-primary" th:href="@{'/products/edit/' + ${product.id}}">Details/Change</a>
+                            <a id="edit_btn"  class="btn-lg fa fa-fw fa-edit" th:href="@{'/products/edit/' + ${product.id}}"/>
+                            <a id="remove_btn"  class="btn-lg fa fa-fw fa-times" th:href="@{'/products/delete/' + ${product.id}}"/>
                         </td>
                     </tr>
                     </tbody>

@@ -29,17 +29,21 @@
                     <tr>
                         <th>id</th>
                         <th>name</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="role : ${roles}">
+                    <tr id="role_line" th:each="role : ${roles}">
                         <td th:text="${role.id}"/>
-                        <td th:text="${role.name}"/>
+                        <td id="role_name" th:text="${role.name}"/>
+                        <td>
+                            <a id="remove_btn" class="btn-lg fa fa-fw fa-trash-alt" th:href="@{'/roles/delete/' + ${role.id}}"/>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 <br>
-                <a class="btn btn-primary" th:href="@{/roles/add}">Add role</a>
+                <a id="add_role" class="btn btn-primary" th:href="@{/roles/add}">Add role</a>
             </div>
         </div>
     </div>
