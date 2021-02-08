@@ -67,6 +67,11 @@ public class PictureServiceFileImpl implements PictureService{
     @Override
     @Transactional
     public void removePictureById(Long id) {
+        try {
+            Files.delete(Paths.get(storagePath, pictureRefRepository.getOne(id).getPicture().getFilename())) ;
+        } catch (IOException exception) {
+            throw  new RuntimeException(exception);
+        }
         pictureRefRepository.deleteById(id);
 
     }

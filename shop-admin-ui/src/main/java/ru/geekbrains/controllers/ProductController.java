@@ -7,6 +7,8 @@ import ru.geekbrains.data.ProductData;
 import ru.geekbrains.services.CategoryService;
 import ru.geekbrains.services.ProductService;
 
+import javax.validation.Path;
+
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -59,6 +61,14 @@ public class ProductController {
             @ModelAttribute ProductData productData
     ){
         productService.createOrUpdateProduct(productData);
+        return "redirect:/products";
+    }
+
+    @GetMapping("/delete/{productId}")
+    public String deleteProduct(
+            @PathVariable Long productId
+    ){
+        productService.remove(productId);
         return "redirect:/products";
     }
 }

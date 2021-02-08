@@ -53,7 +53,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void remove(Long id) {
+
+        productRepository.getOne(id).getPictureRefs()
+                .forEach(pictureRef -> pictureService.removePictureById(pictureRef.getId()));
+
         productRepository.deleteById(id);
     }
 
