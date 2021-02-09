@@ -1,0 +1,38 @@
+server:
+  port: 8989
+  servlet:
+    context-path: /shop
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/study_food_shop_db?createDatabaseIfNotExist=true&&characterEncoding=UTF-8&serverTimezone=Europe/Moscow
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+  thymeleaf:
+    enabled: true
+    encoding: utf-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+
+  liquibase:
+    enabled: false
+
+picture:
+  storage:
+    path: C:\Users\EVA\IdeaProjects\study-food-shop\pictures
+    type: file
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
+
