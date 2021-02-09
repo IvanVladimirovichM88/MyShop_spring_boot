@@ -9,6 +9,10 @@ import ru.geekbrains.services.CartService;
 import ru.geekbrains.services.CategoryService;
 import ru.geekbrains.services.ProductServiceForShop;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -61,4 +65,15 @@ public class ProductController {
         return "redirect:/products";
     }
 
+
+    @GetMapping("/addToCart/{productId}")
+    public void addProductInCart(
+            @PathVariable (name = "productId") Long productId,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        ProductData productData = productService.findProductDataById(productId);
+        cartService.addOneAndUpdate(productData);
+        response.sendRedirect(request.getHeader("referer"));
+    }
 }

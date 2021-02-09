@@ -32,16 +32,6 @@ public class CartController {
         return"cart";
     }
 
-    @GetMapping("/add/{productId}")
-    public void addProductInCart(
-            @PathVariable (name = "productId") Long productId,
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws IOException {
-        ProductData productData = productService.findProductDataById(productId);
-        cartService.addOneAndUpdate(productData);
-        response.sendRedirect(request.getHeader("referer"));
-    }
 
     @GetMapping("/remove/{productId}")
     public String removeProductGroupInCart(

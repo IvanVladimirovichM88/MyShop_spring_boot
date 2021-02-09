@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="custom-select-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                    <select id="Money" class="selectpicker show-tick form-control" data-placeholder="$ USD">
                         <option>¥ JPY</option>
                         <option>$ USD</option>
                         <option>€ EUR</option>
@@ -19,19 +19,15 @@
                 </div>
                 <div class="our-link">
                     <ul>
-                        <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a href="#"><i class="fas fa-location-arrow"></i> Our location</a></li>
-                        <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/user}"><i class="fa fa-user s_color"></i> My Account</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i class="fas fa-location-arrow"></i> Logout</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}"><i class="fas fa-location-arrow"></i> Login</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/authenticate}"><i class="fa fa-user s_color"></i> Authenticate</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="login-box">
-                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In">
-                        <option>Register Here</option>
-                        <option>Sign In</option>
-                    </select>
-                </div>
+
                 <div class="text-slid-box">
                     <div id="offer-box" class="carouselTicker">
                         <ul class="offer-box">
@@ -84,27 +80,18 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="dropdown active">
-                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
-                        <ul class="dropdown-menu">
-                            <li><a th:href="@{/products}">Sidebar Shop</a></li>
-                            <li><a href="shop-detail.html">Shop Detail</a></li>
-                            <li><a th:href="@{/cart}">Cart</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{'/'}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{about.html}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{'/products'}">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{'/cart'}">Cart</a></li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:href="@{/}">My Account</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{contact-us.html}">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
 
             <!-- Start Atribute Navigation -->
-            <div class="attr-nav">
+            <div sec:authorize="isAuthenticated()" class="attr-nav">
                 <ul>
                     <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                     <li class="side-menu"><a href="#">

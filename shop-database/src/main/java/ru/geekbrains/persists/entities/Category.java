@@ -1,7 +1,5 @@
 package ru.geekbrains.persists.entities;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
