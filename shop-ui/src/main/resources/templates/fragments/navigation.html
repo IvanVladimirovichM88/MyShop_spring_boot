@@ -7,22 +7,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="custom-select-box">
-                    <select id="Money" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-                    </select>
-                </div>
                 <div class="right-phone-box">
-                    <p>Call US :- <a href="#"> +11 900 800 100</a></p>
+                    <p sec:authorize="isAuthenticated()" > Hello <span th:text="${userData.name}"/> </p>
                 </div>
                 <div class="our-link">
                     <ul>
-                        <li><a sec:authorize="isAuthenticated()" th:href="@{/user}"><i class="fa fa-user s_color"></i> My Account</a></li>
-                        <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i class="fas fa-location-arrow"></i> Logout</a></li>
-                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}"><i class="fas fa-location-arrow"></i> Login</a></li>
-                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/authenticate}"><i class="fa fa-user s_color"></i> Authenticate</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/user/detail}"><i class="fa fa-user s_color"></i>My Account</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}"><i class="fas fa-location-arrow"></i>Logout</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}"><i class="fas fa-location-arrow"></i>Login</a></li>
+                        <li><a sec:authorize="!isAuthenticated()" th:href="@{/user/registration}"><i class="fa fa-user s_color"></i>Registration</a></li>
                     </ul>
                 </div>
             </div>
@@ -81,11 +74,11 @@
             <div class="collapse navbar-collapse" id="navbar-menu">
                 <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                     <li class="nav-item"><a class="nav-link" th:href="@{'/'}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{about.html}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{'/templates/about.html'}">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{'/products'}">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{'/cart'}">Cart</a></li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:href="@{/}">My Account</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{contact-us.html}">Contact Us</a></li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:href="@{'/cart'}">Cart</a></li>
+<!--                    <li class="nav-item" sec:authorize="isAuthenticated()"><a class="nav-link" th:href="@{/}">My Account</a></li>-->
+                    <li class="nav-item"><a class="nav-link" th:href="@{/pages/contact-us.html}">Contact Us</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

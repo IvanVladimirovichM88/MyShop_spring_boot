@@ -8,6 +8,7 @@ import ru.geekbrains.persists.entities.User;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
 
@@ -19,7 +20,7 @@ public interface UserService extends UserDetailsService {
 
     void saveOrUpdate(User user);
 
-    User getCurrentUser(Principal principal);
+    Optional<User> getCurrentUser(Principal principal);
 
     void authenticateUser(User user);
 

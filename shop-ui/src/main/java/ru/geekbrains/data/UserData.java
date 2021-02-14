@@ -15,6 +15,10 @@ public class UserData {
 
     public UserData(){}
 
+    public UserData(String name) {
+        this.name = name;
+    }
+
     public  UserData(User user){
         this.id = user.getId();
         this.username = user.getUsername();

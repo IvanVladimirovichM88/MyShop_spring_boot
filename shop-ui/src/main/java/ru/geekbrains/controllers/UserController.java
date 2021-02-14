@@ -22,12 +22,28 @@ public class UserController {
         this.userService = userService;
     }
 
+
+    @GetMapping("/detail")
+    public String showUserDetail(
+            Model model
+    ){
+        return "form/user_detail_form";
+    }
+
+    @PostMapping("/detail")
+    public String updateUserDetail(
+            @ModelAttribute UserData userData,
+            Principal principal
+    ){
+        userService.update(userData,principal);
+        return "redirect:/user/detail";
+    }
+
     @GetMapping("/registration")
     public String showUserRegistrationForm(
             Model model
     ){
-        model.addAttribute("userData", new UserData());
-        return "userForm";
+        return "form/user_registration_form";
     }
 
     @PostMapping("/registration")
@@ -35,7 +51,7 @@ public class UserController {
             @ModelAttribute UserData userData
     ){
         User user = userService.createOrUpdate(userData);
-        userService.authenticateUser(user );
+        userService.authenticateUser(user);
         return "redirect:/";
     }
 

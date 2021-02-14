@@ -18,10 +18,7 @@ import ru.geekbrains.services.RoleService;
 import ru.geekbrains.services.UserServiceShopUI;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,22 +37,34 @@ public class UserServiceShopUIImpl implements UserServiceShopUI {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if(user==null){
+        Optional <User> user = userRepository.findByUsername(username);
+
+        if(user.isEmpty()){
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }
 
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles())
+                user.get().getUsername(),
+                user.get().getPassword(),
+                mapRolesToAuthorities(user.get().getRoles())
         );
     }
 
     @Override
-    public UserData getCurrentUser(Principal principal) {
+    public Optional<User> getCurrentUser(Principal principal) {
 
-        return new UserData( userRepository.findByUsername(principal.getName()) );
+        if (principal == null){
+            return Optional.empty();
+        }
+
+        return userRepository.findByUsername(principal.getName());
+    }
+
+    @Override
+    public Optional<UserData> getCurrentUserData(Principal principal) {
+
+        return this.getCurrentUser(principal).map(UserData::new);
+
     }
 
     @Override
@@ -83,6 +92,30 @@ public class UserServiceShopUIImpl implements UserServiceShopUI {
         }
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public User update(UserData updateUser, Principal principal) {
+
+        Optional<User> currentUser = this.getCurrentUser(principal);
+
+        if ( currentUser.isEmpty() ){
+            throw new UsernameNotFoundException("No current User");
+        }
+
+        boolean isChangInCurrentUser = false;
+
+        if (!updateUser.getName().isBlank() || updateUser.getName().equals(currentUser.get().getName())){
+            currentUser.get().setName(updateUser.getName());
+            isChangInCurrentUser =  true;
+        }
+
+        if (!updateUser.getPassword().isBlank()){
+            currentUser.get().setPassword( passwordEncoder.encode(updateUser.getPassword()) );
+            isChangInCurrentUser =  true;
+        }
+
+        return isChangInCurrentUser? userRepository.save(currentUser.get()) : currentUser.get();
     }
 
     @Override
