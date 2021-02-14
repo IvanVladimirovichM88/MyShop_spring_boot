@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+
+    <title>Login | BootAdmin</title>
+</head>
+<body class="bg-light">
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-4">
+            <h1 class="text-center mb-4">BootAdmin</h1>
+            <div class="card">
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input id="inp-username" type="text" class="form-control" placeholder="Username" name="username">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input id="inp-password" type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="remember" class="form-check-input">
+                                Remember Me
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col pr-2">
+                                <button id="btn-login" type="submit" class="btn btn-block btn-primary">Login</button>
+                            </div>
+                            <div class="col pl-2">
+                                <a class="btn btn-block btn-link" href="#">Forgot Password</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118868344-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-118868344-1');
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4097235499795154",
+        enable_page_level_ads: true
+    });
+</script>
+
+</body>
+</html>

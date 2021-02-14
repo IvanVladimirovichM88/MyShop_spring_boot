@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <th:block th:replace = "~{fragments/resources :: head/link}"/>
+    <th:block th:replace = "~{fragments/resources :: head/script}"/>
+
+    <title>Roles</title>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navigation :: navigation}"/>
+
+<div class="d-flex">
+    <div th:replace="~{fragments/navigation :: menu}"/>
+
+    <div class="content p-4" style="width: 30rem;">
+
+        <h2 class="mb-4">Roles</h2>
+
+        <div class="card mb-4">
+            <div class="card-body" >
+                <table id="example" class="table table-hover" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="role_line" th:each="role : ${roles}">
+                        <td th:text="${role.id}"/>
+                        <td id="role_name" th:text="${role.name}"/>
+                        <td>
+                            <a id="remove_btn" class="btn-lg fa fa-fw fa-trash-alt" th:href="@{'/roles/delete/' + ${role.id}}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a id="add_role" class="btn btn-primary" th:href="@{/roles/add}">Add role</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
